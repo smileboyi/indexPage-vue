@@ -1,5 +1,16 @@
 <template>
-  <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit quos sed dolor quia totam dicta veniam eligendi, a id sunt! Iure nobis deleniti quae maiores eaque consequuntur sed. Eum, odit!</div>
+  <div class="page-bottom">
+    <div class="top">
+      <img src="../assets/img/icon/dialogue.png" alt="">
+      <el-button class="btn" round>立即注册</el-button>
+    </div>
+    <div class="center"></div>
+    <div class="bottom">
+      <img src="../assets/img/icon/qubiezhen.png" alt="">
+
+    </div>
+  </div>
+
 </template>
 
 <script>
