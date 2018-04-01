@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="grail">
+  <div id="app" class="grail w100">
     <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
@@ -12,7 +12,10 @@ export default {
 </script>
 
 <style>
-
+  body{
+    max-width: 1900px;
+    min-width: 900px;
+  }
 </style>
 <script>
 export default {

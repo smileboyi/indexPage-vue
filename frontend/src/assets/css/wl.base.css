@@ -337,16 +337,34 @@ body{-webkit-overfloscrolling: touch;line-height: 1.6;font-family: -apple-system
 	border:1px solid #ddd;
 }
 
-/**
- *	1、ac代表active(激活),in代表invalid(失效)。这2个状态class不能单独使用，
- *	需要配合其他class使用。比如.btn.ac代表按钮点中的状态。
- *	2、css属性书写顺序:
- *	影响文档流的属性（比如：display, position, float, clear, visibility, table-layout等） 
- *	自身盒模型的属性（比如：width, height, margin, padding, border等） 
- *	排版相关属性（比如：font, line-height, text-align, text-indent, vertical-align等） 
- *	装饰性属性（比如：color, background, opacity, cursor等） 
- *	生成内容的属性（比如：content, list-style, quotes等） 
- *	3.使用BEM命名class
- */
-
+.cor1{
+	color: #cdcdcd;
+}
+.cor2{
+	color: #ff7e32;
+}
+.cor3{
+	color: #4d4d4d;
+}
+.cor4{
+	color: #818181;
+}
+.cor5{
+	color: #242424;
+}
+.cor6{
+	color: #f89a72;
+}
+.bgc1{
+	background-color: #ff7e32;
+}
+.bgc2{
+	background-color: #242424;
+}
+.bgc3{
+	background-color: #2c2c2c;
+}
+.bgc4{
+	background-color: #f6f6f6;
+}
 /**********面向属性的css end**********/

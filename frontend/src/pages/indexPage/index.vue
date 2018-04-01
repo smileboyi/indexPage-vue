@@ -1,5 +1,5 @@
 <template>
-  <div class="user pre">
+  <div>
     <pageTop />
     <pageBottom />
   </div>
