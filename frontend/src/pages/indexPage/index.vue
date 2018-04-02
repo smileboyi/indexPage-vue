@@ -1,7 +1,7 @@
 <template>
   <div>
     <pageTop />
-    <pageBottom />
+    <!-- <pageBottom /> -->
   </div>
 </template>
 
