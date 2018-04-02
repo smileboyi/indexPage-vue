@@ -84,7 +84,7 @@ import registerPopup from '@/components/registerPopup'
       }
     }
     &line{
-      top: -.2em;
+      top: -.3em;
       width: 10px;
       height: 1px;
       margin-right: 8px;
