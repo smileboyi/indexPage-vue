@@ -16,19 +16,7 @@
 
 <script>
   export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          code: ''
-        }
-      }
-    },
-    methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
-    }
+
   }
 </script>
 
@@ -56,7 +44,6 @@
     &ipt{
       padding: 0 .2456rem;
       font-size: .2456rem;
-
     }
     &validate{
       width: 1.9298rem;

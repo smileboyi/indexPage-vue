@@ -17,14 +17,3 @@ export default {
     min-width: 900px;
   }
 </style>
-<script>
-export default {
-  name: 'app',
-  computed: {
-
-  },
-  components:{
-
-  }
-}
-</script>

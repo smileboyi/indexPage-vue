@@ -41,7 +41,7 @@
       width: 3.1579rem;
       height: .5789rem;
       padding: 0 .3509rem;
-      margin-right: -.8em;
+      margin-right: .2em;
       line-height: .5789rem;
       font-size: 12px;
       color: #fff;

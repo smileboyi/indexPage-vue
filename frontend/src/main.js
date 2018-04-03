@@ -6,7 +6,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 // 使用element-ui
-import { Button,Form,FormItem,Input,Row,Col } from 'element-ui';
+import { Button,Form,FormItem,Input,Row,Col,Tabs,TabPane } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Button)
 Vue.use(Form)
@@ -14,21 +14,17 @@ Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Row)
 Vue.use(Col)
-
-
-
-
+Vue.use(Tabs)
+Vue.use(TabPane)
 
 
 // base.css
 import './assets/css/wl.base.css' 
 
 //使用axios
-import axios from 'axios'
-
+// import axios from 'axios'
 
 import App from './App'
-
 
 /* eslint-disable no-new */
 new Vue({

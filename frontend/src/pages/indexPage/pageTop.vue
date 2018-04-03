@@ -4,10 +4,10 @@
     <div class="left pab hauto2">
       <p class="ptl_text1">只要你是HR 分享简历资源</p>
       <p class="ptl_text2">法拉利送给你！</p>
-      <div class="ptl_dots">
-        <i class="ptl_dot"></i>
-        <i class="ptl_dot"></i>
-        <i class="ptl_dot ac"></i>
+      <div class="ptl_dots pre">
+        <i class="ptl_dot"><i></i></i>
+        <i class="ptl_dot"><i></i></i>
+        <i class="ptl_dot ac"><i></i></i>
         <span class="ptl_choose"><i class="ptl_line dib pre"></i>Choose Color</span>
       </div>
       <div class="ptl_num">100,000,000 优悦钱</div>
@@ -22,12 +22,12 @@ import loginBar from '@/components/loginBar'
 import registerPopup from '@/components/registerPopup'
 
 
-  export default {
-    components:{
-      loginBar,
-      registerPopup
-    }
+export default {
+  components:{
+    loginBar,
+    registerPopup
   }
+}
 </script>
 
 <style lang="less" scoped>
@@ -49,35 +49,36 @@ import registerPopup from '@/components/registerPopup'
       color: #df5930;
     }
     &dots{
-
+      z-index: 10;
     }
     &dot{
-      position: relative;
       display: inline-block;
-      width: .2631rem;
-      height: .2631rem;
+      position: relative;
+      width: .3684rem;
+      height: .3684rem;
       border-radius: 50%;
-      z-index: 20;
-      &:nth-of-type(1){
+      background-color: #362d2f;
+      z-index: 10;
+      i{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;
+        margin: auto;
+        display: inline-block;
+        width: .2631rem;
+        height: .2631rem;
+        border-radius: 50%;
+      }
+      &:nth-of-type(1) i{
         background-color: #d3d4d3;
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) i{
         background-color: #d4b11a;
       }
-      &:nth-of-type(3){
+      &:nth-of-type(3) i{
         background-color: #a41213;
-      }
-      &::before{
-        content: "";
-        display: block;
-        position: absolute;
-        left: -.0526rem;
-        top: -.0526rem;
-        width: .3684rem;
-        height: .3684rem;
-        border-radius: 50%;
-        background-color: #362d2f;
-        z-index: 10;
       }
       &.ac{
         transform: scale(1.2);
