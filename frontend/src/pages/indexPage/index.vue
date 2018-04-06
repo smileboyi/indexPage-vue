@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import pageBottom from '@/components/pageBottom'
 import pageTop from './pageTop'
 import featureBox from './featureBox'

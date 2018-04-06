@@ -8,104 +8,153 @@
       简历已下载
       <span class="cor2">16900次</span>
     </p>
-    <div class="hr_main pre">
+    <div class="hr_main pre" @mouseout="handleMouseOut()">
       <div class="flex hr_list h50">
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
+        <div 
+          class="icon hr_item fe" 
+          v-for="(item,index) in hrDatas" 
+          v-if="index<=5"
+          :style="'background-image:url('+ item.bgUrl + ')'"
+          @mouseover="handleMouseOver(index,item.details)"
+          :key="index"
+        >
+          <a 
+            class="hr_item-play" 
+            href="javascript:;"
+            v-if="item.viedeoUrl!=''"
+            @click="handleVideoPlay(item.viedeoUrl)"
+          >
             <img src="../../assets/img/play-btn.png" />
           </a>
         </div>
       </div>
 
       <div class="flex hr_list h50">
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
-            <img src="../../assets/img/play-btn.png" />
-          </a>
-        </div>
-        <div class="icon hr_item fe" style="background-image: url(/static/img/woman.jpg)">
-          <a class="hr_item-play" href="javascript:;">
+        <div 
+          class="icon hr_item fe" 
+          v-for="(item,index) in hrDatas" 
+          v-if="index>5"
+          :style="'background-image:url('+ item.bgUrl + ')'"
+          @mouseover="handleMouseOver(index,item.details)"
+          :key="index"
+        >
+          <a 
+            class="hr_item-play" 
+            href="javascript:;"
+            v-if="item.viedeoUrl!=''"
+            @click="handleVideoPlay(item.viedeoUrl)"
+          >
             <img src="../../assets/img/play-btn.png" />
           </a>
         </div>
       </div>
 
-      <div class="hr_show pab h50">
-        <span class="hr_show-year pab test-spaced tc">2016年加入</span>
+      <div class="hr_show pab h50" :style="positionObj" v-show="isShow">
+        <span class="hr_show-year pab test-spaced tc">{{hrDetails.joinYear}}年加入</span>
         <div class="hr_show-info pre">
-          <a class="hr_show-share dib tc pab" href="javascript:;">分享</a>
+          <a class="hr_show-share dib tc pab" :href="'/hr/'+hrDetails.id+'share'">分享</a>
           <div class="hr_show-right">
-            <p class="hr_show-name">苏珊娜（女）</p>
-            <p class="hr_show-text">优小招共享简历模式帮我轻松搞定工作</p>
+            <p class="hr_show-name">{{hrDetails.name}}（{{hrDetails.sex}}）</p>
+            <p class="hr_show-text">{{hrDetails.text}}</p>
           </div>
         </div>
         <div class="flex hr_show-data">
           <div class="hr_show-item">
-            下载简历：<span class="hr_show-num">565662份</span>
+            下载简历：<span class="hr_show-num">{{hrDetails.downloadNum}}份</span>
           </div>
           <div class="hr_show-item">
-            分享简历：<span class="hr_show-num">5662份</span>
+            分享简历：<span class="hr_show-num">{{hrDetails.shareNum}}份</span>
           </div>
           <div class="hr_show-item">
-            兑换礼品：<span class="hr_show-num">52份</span>
+            兑换礼品：<span class="hr_show-num">{{hrDetails.convertNum}}份</span>
           </div>
           <div class="hr_show-item">
-            礼品价值：<span class="hr_show-num">￥54,685元</span>
+            礼品价值：<span class="hr_show-num">￥{{hrDetails.giftValue}}元</span>
           </div>
         </div>
       </div>
+
+      <videoPlayer class="pab wh100 not dn" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+  import { getHrDatas } from '@/api/api';
+  import videoPlayer from '@/components/videoPlayer'
 
+
+  export default {
+    data(){
+      return {
+        isShow: false,
+        hrDatas: [],
+        positionObj:{
+          left: "0%",
+          top: "0%"
+        },
+        hrDetails: {
+          name: "",
+          joinYear: "",
+          id: "",
+          text: "",
+          downloadNum: 0,
+          shareNum: 0,
+          convertNum: 0,
+          giftValue: 0
+        }
+      };
+    },
+    created(){
+      // 实例创建后，初始化列表数据，页面还没渲染时调用init方法。
+      this.init();
+    },
+    methods:{
+      init(){
+        getHrDatas({}).then(res => {
+          this.hrDatas = res.data.todos;
+        });
+      },
+      handleMouseOver(index, details){
+        if(this.isShow) return;
+        if(index<6){
+          if(index<4){
+            this.positionObj = {
+              left: 16.6666*(index+1)+"%",
+              top: '0%'
+            };
+          }else{
+            this.positionObj = {
+              left: 16.6666*(index-2)+"%",
+              top: '0%'
+            };
+          }
+        }else{
+          if(index<9){
+            this.positionObj = {
+              left: 16.6666*(index-5)+"%",
+              top: '50%'
+            };
+          }else{
+            this.positionObj = {
+              left: 16.6666*(index-8)+"%",
+              top: '50%'
+            };
+          }
+        }
+        this.hrDetails = details;
+        this.isShow = true;
+      },
+      handleMouseOut(){
+        this.isShow = false;
+      },
+      handleVideoPlay(url){
+
+      }
+    },
+    components:{
+      videoPlayer
+    }
   }
 </script>
 
@@ -128,7 +177,7 @@
       height: 10.5263rem;
     }
     &list{
-
+      
     }
     &item{
       position: relative;
@@ -151,8 +200,8 @@
   }
   .hr_show{
     width: 33.3333%;
-    left: 33.3333%;
-    top: 0;
+    // left: 33.3333%;
+    // top: 50%;
     background-color: rgba(22, 22, 22, .8);
   }
   .hr_show-{
