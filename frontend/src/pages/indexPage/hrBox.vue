@@ -112,7 +112,7 @@
     methods:{
       init(){
         getHrDatas({}).then(res => {
-          this.hrDatas = res.data.todos;
+          this.hrDatas = res.data.datas;
         });
       },
       handleMouseOver(index, details){

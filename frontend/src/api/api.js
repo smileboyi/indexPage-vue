@@ -6,3 +6,9 @@ export const getHrDatas = params => {
     params: params
   });
 };
+
+export const getGiftDatas = params => {
+  return axios.get(`/gift/list`, {
+    params: params
+  });
+};

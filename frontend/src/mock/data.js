@@ -19,6 +19,29 @@ for (let i = 1; i <= 12; i++) {
     }
   }));
 }
+
+let giftDatas = [{
+  // 第一个是大奖
+  id: Mock.Random.guid(),
+  imgSrc: "/static/img/red-car.jpg",
+  title: "法拉利448",
+  parameter: "法拉利法拉利法拉利，法拉利法拉利法拉利",
+  marketPrice: "3689000",
+  discountPrice: "3000000"
+}];
+for (let i = 1; i <= 7; i++) {
+  giftDatas.push(Mock.mock({ // 根据数据模板生成模拟数据。
+    id: Mock.Random.guid(),
+    imgSrc: "/static/img/product.jpg",
+    title: "Apple MacBook Pro 15.4英寸笔记本电脑",
+    parameter: "银色(Core i7 处理器/16GB内存/256GB",
+    marketPrice: "36890",
+    discountPrice: "30000"
+  }));
+}
+
+
 export {
-  HrDatas
+  HrDatas,
+  giftDatas
 };

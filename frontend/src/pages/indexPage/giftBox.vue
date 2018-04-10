@@ -13,115 +13,66 @@
       <el-tab-pane label="10000以上" name="1wup">
         <div class="gift_group flex">
           <div class="gift_item--big pre">
-            <i class="icon image dib2" style="background-image: url(/static/img/red-car.jpg)"></i>
+            <i class="icon image dib2" :style="'background-image:url('+ bigGift.imgSrc + ')'"></i>
             <div class="main tc dib pab hauto2">
-              <h4 class="title">法拉利488</h4>
+              <h4 class="title">{{ bigGift.title }}</h4>
               <div class="price--market">
-                <span>市值</span>￥36890元
+                <span>市值</span>￥{{ bigGift.marketPrice }}元
               </div>
               <div class="price--discount">
-                <span>优</span>30000元
+                <span>优</span>{{ bigGift.discountPrice }}元
               </div>
-              <a class="link db tc wauto" href="javascript:;">去兑换</a>
+              <!-- 这里没写成路由的形式，直接写的地址 -->
+              <a class="link db tc wauto" :href="'/gift/'+bigGift.id">去兑换</a>
             </div>
           </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
+          <div 
+            class="fe gift_item" 
+            v-for="(item,index) in gifts"
+            v-if="index<=1"
+            :key="index"
+          >
+            <img class="gift_item-img" :src="item.imgSrc" alt="">
             <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
+              <a :href="'/gift/'+item.id">
+                <h4 class="gift_item-title">{{ item.title }}</h4>
+                <p class="gift_item-parameter">{{ item.parameter }}</p>
+              </a>
               <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
+                <span>市值</span>￥{{ item.marketPrice }}元
               </div>
               <div class="gift_item-price--discount">
-                <span>优</span>30000元
-              </div>
-            </div>
-          </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
-            <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>30000元
+                <span>优</span>{{ item.discountPrice }}元
               </div>
             </div>
           </div>
         </div>
-
         <div class="gift_group flex">
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
+          <div 
+            class="fe gift_item" 
+            v-for="(item,index) in gifts"
+            v-if="index>1"
+            :key="index"
+          >
+            <img class="gift_item-img" :src="item.imgSrc">
             <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
+              <a :href="'/gift/'+item.id">
+                <h4 class="gift_item-title">{{ item.title }}</h4>
+                <p class="gift_item-parameter">{{ item.parameter }}</p>
+              </a>
               <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
+                <span>市值</span>￥{{ item.marketPrice }}元
               </div>
               <div class="gift_item-price--discount">
-                <span>优</span>30000元
-              </div>
-            </div>
-          </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
-            <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>30000元
-              </div>
-            </div>
-          </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
-            <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>30000元
-              </div>
-            </div>
-          </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
-            <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>30000元
-              </div>
-            </div>
-          </div>
-          <div class="fe gift_item">
-            <img class="gift_item-img" src="/static/img/product.jpg" alt="">
-            <div class="gift_item-main">
-              <h4 class="gift_item-title">Apple MacBook Pro 15.4英寸笔记本电脑</h4>
-              <p class="gift_item-parameter">银色(Core i7 处理器/16GB内存/256GB</p>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥36890元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>30000元
+                <span>优</span>{{ item.discountPrice }}元
               </div>
             </div>
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="8000以上" name="8kup">8000以上</el-tab-pane>
+      <el-tab-pane label="8000以上" name="8kup">
+        <!-- <tabPane :bigGift="bigGift" :gifts="gifts" /> -->
+      </el-tab-pane>
       <el-tab-pane label="6000以上" name="6kup">6000以上</el-tab-pane>
       <el-tab-pane label="4000以上" name="4kup">4000以上</el-tab-pane>
       <el-tab-pane label="3000以上" name="3kup">3000以上</el-tab-pane>
@@ -133,17 +84,123 @@
 </template>
 
 <script>
- export default {
+  import { getGiftDatas } from '@/api/api';
+  import Vue from 'vue'
+
+
+  let tabPaneHtml = Vue.compile(`
+    <div>
+      <div class="gift_group flex">
+        <div class="gift_item--big pre">
+          <i class="icon image dib2" :style="'background-image:url('+ bigGift.imgSrc + ')'"></i>
+          <div class="main tc dib pab hauto2">
+            <h4 class="title">{{ bigGift.title }}</h4>
+            <div class="price--market">
+              <span>市值</span>￥{{ bigGift.marketPrice }}元
+            </div>
+            <div class="price--discount">
+              <span>优</span>{{ bigGift.discountPrice }}元
+            </div>
+            <!-- 这里没写成路由的形式，直接写的地址 -->
+            <a class="link db tc wauto" :href="'/gift/'+bigGift.id">去兑换</a>
+          </div>
+        </div>
+        <div 
+          class="fe gift_item" 
+          v-for="(item,index) in gifts"
+          v-if="index<=1"
+          :key="index"
+        >
+          <img class="gift_item-img" :src="item.imgSrc" alt="">
+          <div class="gift_item-main">
+            <a :href="'/gift/'+item.id">
+              <h4 class="gift_item-title">{{ item.title }}</h4>
+              <p class="gift_item-parameter">{{ item.parameter }}</p>
+            </a>
+            <div class="gift_item-price--market">
+              <span>市值</span>￥{{ item.marketPrice }}元
+            </div>
+            <div class="gift_item-price--discount">
+              <span>优</span>{{ item.discountPrice }}元
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gift_group flex">
+        <div 
+          class="fe gift_item" 
+          v-for="(item,index) in gifts"
+          v-if="index>1"
+          :key="index"
+        >
+          <img class="gift_item-img" :src="item.imgSrc">
+          <div class="gift_item-main">
+            <a :href="'/gift/'+item.id">
+              <h4 class="gift_item-title">{{ item.title }}</h4>
+              <p class="gift_item-parameter">{{ item.parameter }}</p>
+            </a>
+            <div class="gift_item-price--market">
+              <span>市值</span>￥{{ item.marketPrice }}元
+            </div>
+            <div class="gift_item-price--discount">
+              <span>优</span>{{ item.discountPrice }}元
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
+
+  // let tabPane = new Vue({
+  //   functional: true,
+  //   props: {  
+  //     bigGift: {  
+  //       type: Object,  
+  //       required: true  
+  //     },  
+  //     gifts: {
+  //       type: Array,  
+  //       required: true  
+  //     }  
+  //   },
+  //   render: tabPaneHtml.render,
+  //   staticRenderFns: tabPaneHtml.staticRenderFns
+  // })
+
+  export default {
     data() {
       return {
-        activeName: '1wup'
+        activeName: '1wup',
+        bigGift: {},
+        gifts: []
       };
     },
+    created(){
+      this.init();
+    },
     methods: {
+      init(){
+        getGiftDatas({level:"1wup"}).then(res => {
+          let datas = res.data.datas;
+          this.bigGift = datas[0];
+          datas.shift();
+          this.gifts = datas;
+        });
+      },
       handleClick(tab, event) {
-        console.log(tab, event);
+        let level = event.target.id.slice(4);
+        getGiftDatas({level:level}).then(res => {
+          let datas = res.data.datas;
+          this.bigGift = datas[0];
+          datas.shift();
+          this.gifts = datas;
+
+        });
       }
-    }
+    },
+    // components: {
+    //   tabPane
+    // }
   };
 </script>
 
