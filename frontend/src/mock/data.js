@@ -5,7 +5,7 @@ let HrDatas = [];
 for (let i = 1; i <= 12; i++) {
   HrDatas.push(Mock.mock({ // 根据数据模板生成模拟数据。
     bgUrl: "/static/img/woman.jpg",
-    "viedeoUrl|1": ["http://vjs.zencdn.net/v/oceans.mp4", ""],   //hr没有视频时为空字符串
+    "viedeoSrc|1": ["http://vjs.zencdn.net/v/oceans.mp4", ""],   //hr没有视频时为空字符串
     details: {
       name: Mock.Random.name(),
       "sex|1": ["女","男"],

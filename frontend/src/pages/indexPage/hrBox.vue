@@ -21,8 +21,8 @@
           <a 
             class="hr_item-play" 
             href="javascript:;"
-            v-if="item.viedeoUrl!=''"
-            @click="handleVideoPlay(item.viedeoUrl)"
+            v-if="item.viedeoSrc!=''"
+            @click="handleVideoPlay(item.viedeoSrc)"
           >
             <img src="../../assets/img/play-btn.png" />
           </a>
@@ -41,8 +41,8 @@
           <a 
             class="hr_item-play" 
             href="javascript:;"
-            v-if="item.viedeoUrl!=''"
-            @click="handleVideoPlay(item.viedeoUrl)"
+            v-if="item.viedeoSrc!=''"
+            @click="handleVideoPlay(item.viedeoSrc)"
           >
             <img src="../../assets/img/play-btn.png" />
           </a>
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   import { getHrDatas } from '@/api/api';
   import videoPlayer from '@/components/videoPlayer'
 
@@ -110,6 +111,9 @@
       this.init();
     },
     methods:{
+      ...mapMutations([
+        "playVideo"
+      ]),
       init(){
         getHrDatas({}).then(res => {
           this.hrDatas = res.data.datas;
@@ -148,8 +152,8 @@
       handleMouseOut(){
         this.isShow = false;
       },
-      handleVideoPlay(url){
-
+      handleVideoPlay(src){
+        this.playVideo({ src:src });
       }
     },
     components:{

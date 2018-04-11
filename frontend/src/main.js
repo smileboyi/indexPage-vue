@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from '@/router'
-// import store from '@/store';
+import store from '@/store';
 
 Vue.config.productionTip = false
 
@@ -39,6 +39,7 @@ import App from './App'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }  

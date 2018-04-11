@@ -1,5 +1,5 @@
 <template>
-  <div :class="{player:true}">
+  <div class="player" v-if="home.isViedoPlay">
     <video-player   
       class="vjs-custom-skin"
       ref="videoPlayer"

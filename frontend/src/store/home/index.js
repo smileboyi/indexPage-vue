@@ -1,12 +1,17 @@
 export default {
   namespaced: true,
   state: {  
-    isViedoPlay: false
+    isViedoPlay: false,
+    viedoSrc: "",
   },  
   mutations: {  
-    switchViedoPlay: function(state,data){
-      state.isViedoPlay = data.isViedoPlay;
-    }
+    playVideo(state,data){
+      state.isViedoPlay = true;
+      state.viedoSrc = data.src;
+    },
+    closeVideo(state,data){
+      state.isViedoPlay = false;
+    },
   },
   actions: {
 
