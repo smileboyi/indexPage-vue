@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <videoPlayer class="pab wh100 not dn" />
+      <videoPlayer class="pab wh100 not"/>
     </div>
   </div>
 </template>

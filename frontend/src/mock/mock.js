@@ -23,11 +23,11 @@ export default {
     });
 
     // 获取gift列表
-    mock.onGet('/gift/list').reply(config => { //  config 指前台传过来的值
+    mock.onGet('/gift/list').reply(config => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {   //模拟延迟
+        setTimeout(() => {
           resolve([200, {
-            datas: giftDatas // 返回状态为200和hr数据
+            datas: giftDatas
           }]);
         }, 200);
       });

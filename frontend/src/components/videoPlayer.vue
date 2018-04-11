@@ -1,5 +1,5 @@
 <template>
-  <div class="player">
+  <div :class="{player:true}">
     <video-player   
       class="vjs-custom-skin"
       ref="videoPlayer"
@@ -21,6 +21,9 @@
 </template>
  
 <script>
+  import { mapState } from 'vuex'
+
+
   export default {
     data() {
       return {
@@ -43,6 +46,7 @@
       }
     },
     computed: {
+      ...mapState(['home']),
       player() {
         return this.$refs.videoPlayer.player
       }

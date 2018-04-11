@@ -11,84 +11,38 @@
     </div>
     <el-tabs class="nobd" type="border-card" v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="10000以上" name="1wup">
-        <div class="gift_group flex">
-          <div class="gift_item--big pre">
-            <i class="icon image dib2" :style="'background-image:url('+ bigGift.imgSrc + ')'"></i>
-            <div class="main tc dib pab hauto2">
-              <h4 class="title">{{ bigGift.title }}</h4>
-              <div class="price--market">
-                <span>市值</span>￥{{ bigGift.marketPrice }}元
-              </div>
-              <div class="price--discount">
-                <span>优</span>{{ bigGift.discountPrice }}元
-              </div>
-              <!-- 这里没写成路由的形式，直接写的地址 -->
-              <a class="link db tc wauto" :href="'/gift/'+bigGift.id">去兑换</a>
-            </div>
-          </div>
-          <div 
-            class="fe gift_item" 
-            v-for="(item,index) in gifts"
-            v-if="index<=1"
-            :key="index"
-          >
-            <img class="gift_item-img" :src="item.imgSrc" alt="">
-            <div class="gift_item-main">
-              <a :href="'/gift/'+item.id">
-                <h4 class="gift_item-title">{{ item.title }}</h4>
-                <p class="gift_item-parameter">{{ item.parameter }}</p>
-              </a>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥{{ item.marketPrice }}元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>{{ item.discountPrice }}元
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="gift_group flex">
-          <div 
-            class="fe gift_item" 
-            v-for="(item,index) in gifts"
-            v-if="index>1"
-            :key="index"
-          >
-            <img class="gift_item-img" :src="item.imgSrc">
-            <div class="gift_item-main">
-              <a :href="'/gift/'+item.id">
-                <h4 class="gift_item-title">{{ item.title }}</h4>
-                <p class="gift_item-parameter">{{ item.parameter }}</p>
-              </a>
-              <div class="gift_item-price--market">
-                <span>市值</span>￥{{ item.marketPrice }}元
-              </div>
-              <div class="gift_item-price--discount">
-                <span>优</span>{{ item.discountPrice }}元
-              </div>
-            </div>
-          </div>
-        </div>
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '1wup'" />
       </el-tab-pane>
       <el-tab-pane label="8000以上" name="8kup">
-        <!-- <tabPane :bigGift="bigGift" :gifts="gifts" /> -->
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '8kup'" />
       </el-tab-pane>
-      <el-tab-pane label="6000以上" name="6kup">6000以上</el-tab-pane>
-      <el-tab-pane label="4000以上" name="4kup">4000以上</el-tab-pane>
-      <el-tab-pane label="3000以上" name="3kup">3000以上</el-tab-pane>
-      <el-tab-pane label="2000以上" name="2kup">2000以上</el-tab-pane>
-      <el-tab-pane label="1000以上" name="1kup">1000以上</el-tab-pane>
-      <el-tab-pane label="1000以下" name="1kdown">1000以下</el-tab-pane>
+      <el-tab-pane label="6000以上" name="6kup">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '6kup'" />
+      </el-tab-pane>
+      <el-tab-pane label="4000以上" name="4kup">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '4kup'" />
+      </el-tab-pane>
+      <el-tab-pane label="3000以上" name="3kup">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '3kup'" />
+      </el-tab-pane>
+      <el-tab-pane label="2000以上" name="2kup">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '2kup'" />
+      </el-tab-pane>
+      <el-tab-pane label="1000以上" name="1kup">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '1kup'" />
+      </el-tab-pane>
+      <el-tab-pane label="1000以下" name="1kdown">
+        <tabPane :bigGift="bigGift" :gifts="gifts" v-if="level == '1kdown'" />
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
   import { getGiftDatas } from '@/api/api';
-  import Vue from 'vue'
 
 
-  let tabPaneHtml = Vue.compile(`
+  let tabPaneHtml = `
     <div>
       <div class="gift_group flex">
         <div class="gift_item--big pre">
@@ -149,62 +103,57 @@
         </div>
       </div>
     </div>
-  `);
-
-  // let tabPane = new Vue({
-  //   functional: true,
-  //   props: {  
-  //     bigGift: {  
-  //       type: Object,  
-  //       required: true  
-  //     },  
-  //     gifts: {
-  //       type: Array,  
-  //       required: true  
-  //     }  
-  //   },
-  //   render: tabPaneHtml.render,
-  //   staticRenderFns: tabPaneHtml.staticRenderFns
-  // })
+  `;
 
   export default {
     data() {
       return {
         activeName: '1wup',
+        level: '1wup',
         bigGift: {},
         gifts: []
       };
     },
     created(){
-      this.init();
+      this.fetchGiftsData("1wup");
     },
     methods: {
-      init(){
-        getGiftDatas({level:"1wup"}).then(res => {
-          let datas = res.data.datas;
-          this.bigGift = datas[0];
-          datas.shift();
-          this.gifts = datas;
-        });
-      },
       handleClick(tab, event) {
         let level = event.target.id.slice(4);
+        this.fetchGiftsData(level);
+      },
+      fetchGiftsData(level){
         getGiftDatas({level:level}).then(res => {
           let datas = res.data.datas;
           this.bigGift = datas[0];
           datas.shift();
           this.gifts = datas;
-
+          // 不用activeName控制tabPane显示,因为点击后activeName先改变而数据没有改变
+          this.level = level;
         });
       }
     },
-    // components: {
-    //   tabPane
-    // }
+    components: {
+      'tabPane': {
+        //functional为true时需要和render搭配，提供一个context，否则报错。
+        functional: false,
+        props: {  
+          bigGift: {  
+            type: Object,  
+            required: true  
+          },  
+          gifts: {
+            type: Array,  
+            required: true  
+          }  
+        },
+        template: tabPaneHtml,
+      }
+    }
   };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
   .gift{
     border-bottom: 1.0526rem solid #222;
   }
