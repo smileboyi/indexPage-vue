@@ -73,8 +73,7 @@
           </div>
         </div>
       </div>
-
-      <videoPlayer class="pab wh100 not"/>
+      <videoPlayer />
     </div>
   </div>
 </template>
@@ -111,8 +110,9 @@
       this.init();
     },
     methods:{
-      ...mapMutations([
-        "playVideo"
+      ...mapMutations('home', [
+        "conveyVideoSrc",
+        "switchVideoState"
       ]),
       init(){
         getHrDatas({}).then(res => {
@@ -153,7 +153,8 @@
         this.isShow = false;
       },
       handleVideoPlay(src){
-        this.playVideo({ src:src });
+        this.conveyVideoSrc({ src:src });
+        this.switchVideoState({ play:true });
       }
     },
     components:{

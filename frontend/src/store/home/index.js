@@ -4,14 +4,15 @@ export default {
     isViedoPlay: false,
     viedoSrc: "",
   },  
-  mutations: {  
-    playVideo(state,data){
-      state.isViedoPlay = true;
+  mutations: {
+    // 播放前传入src
+    conveyVideoSrc(state, data){
       state.viedoSrc = data.src;
     },
-    closeVideo(state,data){
-      state.isViedoPlay = false;
-    },
+    // 打开或关闭
+    switchVideoState(state,data) {
+      state.isViedoPlay = data.play;
+    }
   },
   actions: {
 

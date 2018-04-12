@@ -1,7 +1,8 @@
 <template>
-  <div class="player" v-if="home.isViedoPlay">
+  <div class="player pfi wh100 not z50" v-if="home.isViedoPlay">
+    <div class="player_bg wh100" @click="switchVideoState({ play:false })"></div>
     <video-player   
-      class="vjs-custom-skin"
+      class="vjs-custom-skin w75 centre2"
       ref="videoPlayer"
       :options="playerOptions"
       :playsinline="true"
@@ -21,7 +22,7 @@
 </template>
  
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapMutations } from 'vuex'
 
 
   export default {
@@ -31,7 +32,7 @@
         playerOptions: {
           // height: document.documentElement.clientHeight,
           // width: document.documentElement.clientWidth,
-          autoplay: false,
+          autoplay: true,
           muted: true,    // 默认情况下将会消除任何音频。
           language: 'zh-CN',
           playbackRates: [0.7, 1.0, 1.5, 2.0],  //播放速度
@@ -51,7 +52,16 @@
         return this.$refs.videoPlayer.player
       }
     },
+    beforeUpdate: function(){
+      this.playerOptions.sources = [{
+        type: "video/mp4",
+        src: this.home.viedoSrc,
+      }];
+    },
     methods: {
+      ...mapMutations('home', [
+        "switchVideoState"
+      ]),
       // listen event
       onPlayerPlay(player) {
         // console.log('player play!', player)
@@ -60,6 +70,7 @@
         // console.log('player pause!', player)
       },
       onPlayerEnded(player) {
+        this.switchVideoState({ play:false });
         // console.log('player ended!', player)
       },
       onPlayerLoadeddata(player) {
@@ -86,15 +97,19 @@
       },
       // player is ready
       playerReadied(player) {
-        // seek to 10s
-        console.log('example player 1 readied', player)
-        player.currentTime(10)
-        // console.log('example 01: the player is readied', player)
-      }
+        // console.log('example player 1 readied', player)
+      },
     }
   }
 </script>
 <style>
+  /* 覆盖插件的默认样式，不用scoped */
+  .player_bg{
+    background-color: rgba(22, 22, 22, .5);
+  }
+  .vjs-custom-skin{
+    max-width: 1200px;
+  }
   .vjs-big-play-button{	
     top: 50% !important;
     left: 50% !important;
