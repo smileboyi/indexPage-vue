@@ -65,7 +65,7 @@
           v-if="index<=1"
           :key="index"
         >
-          <img class="gift_item-img" :src="item.imgSrc" alt="">
+          <img class="gift_item-img" v-lazy="item.imgSrc" alt="">
           <div class="gift_item-main">
             <a :href="'/gift/'+item.id">
               <h4 class="gift_item-title">{{ item.title }}</h4>
@@ -87,7 +87,7 @@
           v-if="index>1"
           :key="index"
         >
-          <img class="gift_item-img" :src="item.imgSrc">
+          <img class="gift_item-img" v-lazy="item.imgSrc">
           <div class="gift_item-main">
             <a :href="'/gift/'+item.id">
               <h4 class="gift_item-title">{{ item.title }}</h4>

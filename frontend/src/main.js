@@ -28,6 +28,12 @@ import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 Vue.use(VueVideoPlayer)
 
+// 使用图片懒加载
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  listenEvents: [ 'scroll' ]
+})
+
 // base.css
 import './assets/css/wl.base.css' 
 
