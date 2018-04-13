@@ -32,7 +32,7 @@ let giftDatas = [{
 for (let i = 1; i <= 7; i++) {
   giftDatas.push(Mock.mock({ // 根据数据模板生成模拟数据。
     id: Mock.Random.guid(),
-    imgSrc: "/static/img/product.jpg",
+    imgSrc: "https://picsum.photos/400/800/",
     title: "Apple MacBook Pro 15.4英寸笔记本电脑",
     parameter: "银色(Core i7 处理器/16GB内存/256GB",
     marketPrice: "36890",

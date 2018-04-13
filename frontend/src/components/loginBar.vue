@@ -3,17 +3,46 @@
     <img class="lb_logo pab hauto2" src="../assets/img/logo.png" alt="logo">
     <p class="lb_text pab">建立免费交换平台</p>
     <div class="lb_form fr h100 flex">
-      <input class="lb_ipt" type="text" placeholder="手机号">
-      <input class="lb_ipt" type="password" placeholder="输入密码">
-      <a class="lb_login-btn bgc1 dib tc" href="javascript:;">登录</a>
+      <input class="lb_ipt" type="text" placeholder="手机号" v-model="tel">
+      <input class="lb_ipt" type="password" placeholder="输入密码" v-model="password">
+      <a class="lb_login-btn bgc1 dib tc" href="javascript:;" @click="fetchRegister">登录</a>
       <a class="lb_forget cor4 pre" href="javascript:;">忘记密码？</a>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+  import { fetchLogin } from '@/api/api';
+  import { checkPhone } from '@/assets/js/utils';
 
+
+  export default {
+    data(){
+      return {
+        tel: "",
+        password: ""
+      }
+    },
+    methods: {
+      fetchRegister(){
+        console.log(this.tel,this.password);
+        if(this.tel==""){
+          this.$message({
+            type: 'error',
+            message: '请输入手机号！'
+          });
+          return;
+        }
+        if(!checkPhone(this.tel)){
+          this.$message({
+            type: 'error',
+            message: '手机号输入有误！'
+          });
+          return;
+        }
+        
+      }
+    }
   }
 </script>
 

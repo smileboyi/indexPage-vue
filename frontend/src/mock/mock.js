@@ -32,5 +32,63 @@ export default {
         }, 200);
       });
     });
+
+    let telUser = {};
+    // 注册
+    mock.onPost('/register').reply(config => {
+      let {tel, code} = JSON.parse(config.data);
+      telUser[tel] = "123456";
+      console.log(telUser);
+      if(tel in telUser){
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve([200, {
+              info: "注册成功，初始密码为123456"
+            }]);
+          }, 200);
+        });
+      }else{
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve([200, {
+              error: "手机号已被注册"
+            }]);
+          }, 200);
+        });
+      }
+    });
+
+    // 登录
+    mock.onPost('/login').reply(config => {
+      let {tel, password} = JSON.parse(config.data);
+      if(tel in telUser){
+        if(password != telUser[tel]){
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve([200, {
+                error: "手机号或者密码有误！"
+              }]);
+            }, 200);
+          });
+        }else{
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve([200, {
+                info: "欢迎回来"
+              }]);
+            }, 200);
+          });
+        }
+      }else{
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve([200, {
+              error: "此手机号还未注册，请先注册"
+            }]);
+          }, 200);
+        });
+      }
+    });
+
   }
 }

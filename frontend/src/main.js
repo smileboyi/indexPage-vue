@@ -12,7 +12,7 @@ Mock.start();
 
 
 // 使用element-ui
-import { Button,Form,FormItem,Input,Row,Col,Tabs,TabPane } from 'element-ui';
+import { Button,Form,FormItem,Input,Row,Col,Tabs,TabPane,Message } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Button)
 Vue.use(Form)
@@ -22,6 +22,8 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.prototype.$message = Message;
+
 
 // 使用VueVideoPlayer
 import VueVideoPlayer from 'vue-video-player'
