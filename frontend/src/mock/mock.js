@@ -37,17 +37,7 @@ export default {
     // 注册
     mock.onPost('/register').reply(config => {
       let {tel, code} = JSON.parse(config.data);
-      telUser[tel] = "123456";
-      console.log(telUser);
       if(tel in telUser){
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve([200, {
-              info: "注册成功，初始密码为123456"
-            }]);
-          }, 200);
-        });
-      }else{
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve([200, {
@@ -55,9 +45,19 @@ export default {
             }]);
           }, 200);
         });
+      }else{
+        telUser[tel] = "123456";
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve([200, {
+              info: "注册成功，初始密码为123456"
+            }]);
+          }, 200);
+        });
       }
     });
 
+    let token = "";
     // 登录
     mock.onPost('/login').reply(config => {
       let {tel, password} = JSON.parse(config.data);
@@ -66,15 +66,17 @@ export default {
           return new Promise((resolve, reject) => {
             setTimeout(() => {
               resolve([200, {
-                error: "手机号或者密码有误！"
+                error: "手机号或密码有误！"
               }]);
             }, 200);
           });
         }else{
+          token = Mock.Random.guid();
           return new Promise((resolve, reject) => {
             setTimeout(() => {
               resolve([200, {
-                info: "欢迎回来"
+                info: "欢迎回来",
+                token: token
               }]);
             }, 200);
           });
@@ -83,12 +85,23 @@ export default {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve([200, {
-              error: "此手机号还未注册，请先注册"
+              error: "此手机号还未注册"
             }]);
           }, 200);
         });
       }
     });
 
+    // 注销
+    mock.onPost('/logout').reply(config => {
+      token = "";
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            info: "账户已注销"
+          }]);
+        }, 200);
+      });
+    });
   }
 }

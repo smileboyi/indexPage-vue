@@ -181,9 +181,6 @@
     &main{
       height: 10.5263rem;
     }
-    &list{
-      
-    }
     &item{
       position: relative;
       &:hover{

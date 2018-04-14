@@ -1,6 +1,6 @@
 <template>
   <div class="page-bottom">
-    <div class="top bgc1 pre">
+    <div :class="{ 'top':true, 'bgc1':true, 'dn':account.loginState }">
       <img class="pbt_img pab hauto2" src="../assets/img/dialogue.png" alt="">
       <el-button class="pbt_btn nobd pab hauto2 cor2" round>立即注册</el-button>
     </div>
@@ -42,14 +42,19 @@
 </template>
 
 <script>
-export default {
+  import { mapState } from 'vuex'
 
-}
+  export default {
+    computed: {
+      ...mapState(['account'])
+    }
+  }
 </script>
 
 <style lang="less" scoped>
   .page-bottom{
     .top{
+      position: relative;
       height: 2.9474rem;
     }
     .center{

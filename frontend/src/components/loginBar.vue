@@ -2,18 +2,25 @@
   <div class="login-bar bgctp w100">
     <img class="lb_logo pab hauto2" src="../assets/img/logo.png" alt="logo">
     <p class="lb_text pab">建立免费交换平台</p>
-    <div class="lb_form fr h100 flex">
+    <div :class="{ 'lb_form':true, 'dn':account.loginState }">
       <input class="lb_ipt" type="text" placeholder="手机号" v-model="tel">
-      <input class="lb_ipt" type="password" placeholder="输入密码" v-model="password">
-      <a class="lb_login-btn bgc1 dib tc" href="javascript:;" @click="fetchRegister">登录</a>
+      <input class="lb_ipt" type="password" placeholder="输入密码" v-model="password" @keyup.enter="fetchAccountLogin">
+      <a class="lb_login-btn bgc1 dib tc" href="javascript:;" @click="fetchAccountLogin">登录</a>
       <a class="lb_forget cor4 pre" href="javascript:;">忘记密码？</a>
     </div>
+    <p :class="{ 'lb_user':true, 'dn':!account.loginState }">
+      <!-- 进入/account/index后，再通过tel加载用户信息，填充的容器上。不写成/account/152...形式 -->
+      <a class="lb_link" href="/account/index">{{ tel | telNumberHide }}</a>，欢迎回来  
+      （<span class="lb_out" @click="fetchAccountLogout">注销</span>）
+    </p>
   </div>
 </template>
 
 <script>
   import { fetchLogin } from '@/api/api';
   import { checkPhone } from '@/assets/js/utils';
+  import { telNumberHide } from '@/assets/js/filters';
+  import { mapState, mapMutations } from 'vuex'
 
 
   export default {
@@ -23,9 +30,15 @@
         password: ""
       }
     },
+    computed: {
+      ...mapState(['account'])
+    },
     methods: {
-      fetchRegister(){
-        console.log(this.tel,this.password);
+      ...mapMutations('account', [
+        'turnloginState',
+        'turnlogoutState'
+      ]),
+      fetchAccountLogin(){
         if(this.tel==""){
           this.$message({
             type: 'error',
@@ -40,8 +53,34 @@
           });
           return;
         }
-        
+        if(this.password==""){
+          this.$message({
+            type: 'error',
+            message: '请输入密码！'
+          });
+          return;
+        }
+        fetchLogin({ tel:this.tel,password:this.password }).then(res => {
+          if(res.error){
+            this.$message({
+              type: "error",
+              message: res.error
+            });
+          }else{
+            this.$message({
+              type: "success",
+              message: res.info
+            });
+            this.turnloginState({token:res.token});
+          }
+        });
+      },
+      fetchAccountLogout(){
+        this.turnlogoutState();
       }
+    },
+    filters: {
+      telNumberHide
     }
   }
 </script>
@@ -63,8 +102,17 @@
       color: #fff;
     }
     &form{
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      float: right;
+      height: 100%;
       margin-right: 1.4035rem;
       align-items: center;
+    }
+    &form.dn{
+      display: none;
     }
     &ipt{
       width: 3.1579rem;
@@ -89,6 +137,26 @@
       left: .2456rem;
       font-size: 12px;
       text-decoration: underline;
+    }
+    &user{
+      position: absolute;
+      right: 1.4035rem;
+      padding-top: .57rem;
+      height: 100%;
+      font-size: .32rem;
+      color: #ccc;
+      -webkit-box-sizing: border-box;
+	    box-sizing: border-box;
+    }
+    &link{
+      color: #ccc;
+    }
+    &link:hover{
+      color: #fff;
+      cursor: pointer;
+    }
+    &out{
+      color: #d8454b;
     }
   }
 </style>

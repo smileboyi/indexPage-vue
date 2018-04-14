@@ -1,5 +1,5 @@
 <template>
-  <div class="register bsb">
+  <div :class="{ 'register':true, 'bsb':true, 'dn':account.loginState }">
     <p class="register_info tc">10秒快速注册，开启心动礼物兑换之旅!</p>
     <label class="register_label dib2 w100">
       <input class="register_ipt wh100" type="text" placeholder="请输入您的手机号" v-model="tel">
@@ -11,12 +11,13 @@
     <el-button class="register_submit bgc1 db nobd" round @click="fetchRegister">立即注册</el-button>
     <p class="register_already tc">已经注册 <a class="cor2" href="javascript:;">立即登录</a></p>
   </div>
-
 </template>
 
 <script>
   import { fetchRegister } from '@/api/api';
   import { checkPhone } from '@/assets/js/utils';
+  import { mapState } from 'vuex'
+  
 
   export default {
     data(){
@@ -24,6 +25,9 @@
         tel: "",
         code: ""
       }
+    },
+    computed: {
+      ...mapState(['account'])
     },
     methods: {
       fetchRegister(){
@@ -49,10 +53,14 @@
           return;
         }
         fetchRegister({ tel:this.tel,code:this.code }).then(res => {
+          let _type =  res.error ? "error" : "success";
+          let _message = res.error ? res.error : res.info;
           this.$message({
-            type: 'success',
-            message: res.info
+            type: _type,
+            message: _message
           });
+          this.tel = "";
+          this.code = "";
         });
       }
     }
