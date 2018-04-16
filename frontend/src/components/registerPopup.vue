@@ -6,7 +6,7 @@
     </label>
     <label class="register_label flex w100">
       <input class="register_ipt wh100 fe" type="text" placeholder="请输入验证码" v-model="code">
-      <i class="db register_validate" style="background-image:url(/static/img/validate.jpg)"></i>
+      <i class="db register_validate" style="background-image:url(./static/img/validate.jpg)"></i>
     </label>
     <el-button class="register_submit bgc1 db nobd" round @click="fetchRegister">立即注册</el-button>
     <p class="register_already tc">已经注册 <a class="cor2" href="javascript:;">立即登录</a></p>
@@ -103,7 +103,7 @@
       width: 88%;
       height: .8772rem;
       line-height: .8772rem;
-      padding: 0;
+      padding: 0 !important;
       margin-top: 1.3158rem;
       margin-left: 6%;
       font-size: .3158rem;

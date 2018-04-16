@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+// 当api过多时，也可以把这些api放进store的actions中
 export const getHrDatas = params => {
   return axios.get(`/hr/list`, {
     params: params

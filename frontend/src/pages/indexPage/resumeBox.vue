@@ -10,7 +10,7 @@
         <img class="resume_search-icon centre2" src="../../assets/img/search.png" alt="">
       </a>
     </label>
-    <div class="resume_show-box icon" style="background-image: url(/static/img/track-bg.jpg)">
+    <div class="resume_show-box icon" style="background-image: url(./static/img/track-bg.jpg)">
       <div class="resume_show-box flex tc">
         <div class="grail fe resume_show-item--left">
           <div class="flex fe">

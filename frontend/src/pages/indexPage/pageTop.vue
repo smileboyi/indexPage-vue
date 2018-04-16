@@ -1,5 +1,5 @@
 <template>
-  <div class="page-top pre contain" style="background-image: url(/static/img/car-bg.jpg)">
+  <div class="page-top pre contain" style="background-image: url(./static/img/car-bg.jpg)">
     <loginBar class="pt_login-bar pab not" />
     <div class="left pab hauto2">
       <p class="ptl_text1">只要你是HR 分享简历资源</p>
@@ -105,7 +105,7 @@ export default {
     &btn{
       width: 2.8947rem;
       line-height: .8246rem;
-      padding: 0;
+      padding: 0 !important;
       font-size: .3158rem;
       color: #b6b6b6;
       border-color: #9e9e9e;

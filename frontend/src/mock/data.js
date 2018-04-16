@@ -4,7 +4,7 @@ import Mock from 'mockjs';
 let HrDatas = [];
 for (let i = 1; i <= 12; i++) {
   HrDatas.push(Mock.mock({ // 根据数据模板生成模拟数据。
-    bgUrl: "/static/img/woman.jpg",
+    bgUrl: "./static/img/woman.jpg",
     "viedeoSrc|1": ["http://vjs.zencdn.net/v/oceans.mp4", "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm",""],   //hr没有视频时为空字符串
     details: {
       name: Mock.Random.name(),
@@ -23,7 +23,7 @@ for (let i = 1; i <= 12; i++) {
 let giftDatas = [{
   // 第一个是大奖
   id: Mock.Random.guid(),
-  imgSrc: "/static/img/red-car.jpg",
+  imgSrc: "./static/img/red-car.jpg",
   title: "法拉利448",
   parameter: "法拉利法拉利法拉利，法拉利法拉利法拉利",
   marketPrice: "3689000",
