@@ -18,10 +18,21 @@ def hash_code(s, salt='webapp'):
 
 @require_http_methods(["GET"])
 def gift_list(request):
-  gift = models.Gift.objects.values('pic_url', 'title','parameter','market_price','discount_price','is_range_great','price_range')
-  print(list(gift))
+  level = request.GET.get('level')
+
+  # 每个价格区间都有一个大礼品，在前端，第一个展示的是大礼品
+  first_big_gift = models.Gift.objects.filter(is_range_great__exact=1, price_range__exact=level).values(
+    'pic_url', 'title','parameter','market_price','discount_price','price_range')
+  datas = [list(first_big_gift)[0],]
+    
+  # 剩下的礼品
+  # gift = models.Gift.objects.all().values('pic_url', 'title','parameter','market_price','discount_price','price_range')
+  # for i in list(gift):
+  #   print(gift[i])
+
+  print(datas)
   result = {}
-  result["datas"] = 333
+  result["datas"] = datas
   return JsonResponse(result,safe=False)
 
 

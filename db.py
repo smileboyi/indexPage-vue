@@ -4,7 +4,7 @@ import datetime
 
 now = datetime.datetime.now()
 
-def createGrftDatas():
+def createGiftDatas():
   global conn,cur
   datas=[]
   price_range = ['1wup','8kup','6kup','4kup','3kup','2kup','1kup','1kdown'] 
@@ -21,7 +21,7 @@ def createGrftDatas():
     
     # 构造大礼
     data=(
-      "https://picsum.photos/400/800/","Apple MacBook Pro 15.4英寸笔记本电脑","银色(Core i7 处理器/16GB内存/256GB",
+      "/static/img/red-car.jpg","Apple MacBook Pro 15.4英寸笔记本电脑","银色(Core i7 处理器/16GB内存/256GB",
       random.randint(3000, 5000),random.randint(1, 3000),1,pr,
     )
     datas.append(data)
@@ -42,7 +42,7 @@ def createHrDatas():
   
   for i in range(20):  
     data=(
-      "/static/img/red-car.jpg","http://vjs.zencdn.net/v/oceans.mp4",
+      "/static/img/woman.jpg","http://vjs.zencdn.net/v/oceans.mp4",
       "优小招",1,now,"优小招共享简历模式帮我轻松搞定工作",
       random.randint(10, 1000),random.randint(10, 1000),random.randint(10, 1000),"653.36"
     )  
@@ -75,11 +75,11 @@ def createAccountDatas():
 
 if __name__ == "__main__":
   # 连接数据库
-  conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='webapp', charset='utf8')
+  conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='', db='webapp', charset='utf8')
   cur=conn.cursor()
   # 生成数据
   createHrDatas()
-  createGrftDatas()
+  createGiftDatas()
   createAccountDatas()
   # 关闭
   cur.close()
