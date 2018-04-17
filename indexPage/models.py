@@ -16,20 +16,17 @@ class Hr(models.Model):
   pic_url = models.CharField(max_length=256)
   viedeo_src = models.CharField(max_length=256)
   name = models.CharField(max_length=32)
-  name = models.CharField(max_length=32)
   sex = models.IntegerField(choices=(
     (1,"男"),
     (2,"女"),
   ),verbose_name="性别")
-  join_year = models.DateTimeField(auto_now_add=True)
+  join_datetime = models.DateTimeField(auto_now_add=True)
   text = models.CharField(max_length=256)
   download_num = models.IntegerField()
   share_num = models.IntegerField()
   convert_num = models.IntegerField()
   gift_value = models.FloatField()
-  
-  def __str__(self):
-    return self.nickname
+
 
 
 class Gift(models.Model):
@@ -49,4 +46,3 @@ class Gift(models.Model):
     ('1kup', '1000以上'),
     ('1kdown', '1000以下'),    
   ))
-  
