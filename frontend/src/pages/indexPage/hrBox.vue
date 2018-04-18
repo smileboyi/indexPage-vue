@@ -14,15 +14,15 @@
           class="icon hr_item fe" 
           v-for="(item,index) in hrDatas" 
           v-if="index<=5"
-          :style="'background-image:url('+ item.bgUrl + ')'"
+          :style="'background-image:url('+ item.pic_url + ')'"
           @mouseover="handleMouseOver(index,item.details)"
           :key="index"
         >
           <a 
             class="hr_item-play" 
             href="javascript:;"
-            v-if="item.viedeoSrc!=''"
-            @click="handleVideoPlay(item.viedeoSrc)"
+            v-if="item.viedeo_src!=''"
+            @click="handleVideoPlay(item.viedeo_src)"
           >
             <img src="../../assets/img/play-btn.png" />
           </a>
@@ -34,15 +34,15 @@
           class="icon hr_item fe" 
           v-for="(item,index) in hrDatas" 
           v-if="index>5"
-          :style="'background-image:url('+ item.bgUrl + ')'"
+          :style="'background-image:url('+ item.pic_url + ')'"
           @mouseover="handleMouseOver(index,item.details)"
           :key="index"
         >
           <a 
             class="hr_item-play" 
             href="javascript:;"
-            v-if="item.viedeoSrc!=''"
-            @click="handleVideoPlay(item.viedeoSrc)"
+            v-if="item.viedeo_src!=''"
+            @click="handleVideoPlay(item.viedeo_src)"
           >
             <img src="../../assets/img/play-btn.png" />
           </a>
@@ -50,7 +50,7 @@
       </div>
 
       <div class="hr_show pab h50" :style="positionObj" v-show="isShow">
-        <span class="hr_show-year pab test-spaced tc">{{hrDetails.joinYear}}年加入</span>
+        <span class="hr_show-year pab test-spaced tc">{{hrDetails.join_year}}年加入</span>
         <div class="hr_show-info pre">
           <a class="hr_show-share dib tc pab" :href="'/hr/'+hrDetails.id+'share'">分享</a>
           <div class="hr_show-right">
@@ -60,16 +60,16 @@
         </div>
         <div class="flex hr_show-data">
           <div class="hr_show-item">
-            下载简历：<span class="hr_show-num">{{hrDetails.downloadNum}}份</span>
+            下载简历：<span class="hr_show-num">{{hrDetails.download_num}}份</span>
           </div>
           <div class="hr_show-item">
-            分享简历：<span class="hr_show-num">{{hrDetails.shareNum}}份</span>
+            分享简历：<span class="hr_show-num">{{hrDetails.share_num}}份</span>
           </div>
           <div class="hr_show-item">
-            兑换礼品：<span class="hr_show-num">{{hrDetails.convertNum}}份</span>
+            兑换礼品：<span class="hr_show-num">{{hrDetails.convert_num}}份</span>
           </div>
           <div class="hr_show-item">
-            礼品价值：<span class="hr_show-num">￥{{hrDetails.giftValue}}元</span>
+            礼品价值：<span class="hr_show-num">￥{{hrDetails.gift_value}}元</span>
           </div>
         </div>
       </div>
@@ -95,13 +95,13 @@
         },
         hrDetails: {
           name: "",
-          joinYear: "",
+          join_year: "",
           id: "",
           text: "",
-          downloadNum: 0,
-          shareNum: 0,
-          convertNum: 0,
-          giftValue: 0
+          download_num: 0,
+          share_num: 0,
+          convert_num: 0,
+          gift_value: 0
         }
       };
     },

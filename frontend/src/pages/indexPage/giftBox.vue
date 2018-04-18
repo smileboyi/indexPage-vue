@@ -46,14 +46,14 @@
     <div>
       <div class="gift_group flex">
         <div class="gift_item--big pre">
-          <i class="icon image dib2" :style="'background-image:url('+ bigGift.imgSrc + ')'"></i>
+          <i class="icon image dib2" :style="'background-image:url('+ bigGift.pic_url + ')'"></i>
           <div class="main tc dib pab hauto2">
             <h4 class="title">{{ bigGift.title }}</h4>
             <div class="price--market">
-              <span>市值</span>￥{{ bigGift.marketPrice }}元
+              <span>市值</span>￥{{ bigGift.market_price }}元
             </div>
             <div class="price--discount">
-              <span>优</span>{{ bigGift.discountPrice }}元
+              <span>优</span>{{ bigGift.discount_price }}元
             </div>
             <!-- 这里没写成路由的形式，直接写的地址 -->
             <a class="link db tc wauto" :href="'/gift/'+bigGift.id">去兑换</a>
@@ -65,17 +65,17 @@
           v-if="index<=1"
           :key="index"
         >
-          <img class="gift_item-img" v-lazy="item.imgSrc+'?'+index" alt="">
+          <img class="gift_item-img" v-lazy="item.pic_url+'?'+index" alt="">
           <div class="gift_item-main">
             <a :href="'/gift/'+item.id">
               <h4 class="gift_item-title">{{ item.title }}</h4>
               <p class="gift_item-parameter">{{ item.parameter }}</p>
             </a>
             <div class="gift_item-price--market">
-              <span>市值</span>￥{{ item.marketPrice }}元
+              <span>市值</span>￥{{ item.market_price }}元
             </div>
             <div class="gift_item-price--discount">
-              <span>优</span>{{ item.discountPrice }}元
+              <span>优</span>{{ item.discount_price }}元
             </div>
           </div>
         </div>
@@ -87,17 +87,17 @@
           v-if="index>1"
           :key="index"
         >
-          <img class="gift_item-img" v-lazy="item.imgSrc+'?'+index">
+          <img class="gift_item-img" v-lazy="item.pic_url+'?'+index">
           <div class="gift_item-main">
             <a :href="'/gift/'+item.id">
               <h4 class="gift_item-title">{{ item.title }}</h4>
               <p class="gift_item-parameter">{{ item.parameter }}</p>
             </a>
             <div class="gift_item-price--market">
-              <span>市值</span>￥{{ item.marketPrice }}元
+              <span>市值</span>￥{{ item.market_price }}元
             </div>
             <div class="gift_item-price--discount">
-              <span>优</span>{{ item.discountPrice }}元
+              <span>优</span>{{ item.discount_price }}元
             </div>
           </div>
         </div>
