@@ -3,8 +3,8 @@ from django.db import models
 
 # Create your models here.
 class Account(models.Model):
-  nickname = models.CharField(max_length=32)
-  account_tel = models.CharField(max_length=128)
+  nickname = models.CharField(max_length=32,null=True)
+  account_tel = models.CharField(max_length=128,primary_key=True)
   password = models.CharField(max_length=64)
   add_time = models.DateTimeField(auto_now_add=True)
 
@@ -14,7 +14,7 @@ class Account(models.Model):
 
 class Hr(models.Model):
   pic_url = models.CharField(max_length=256)
-  viedeo_src = models.CharField(max_length=256)
+  viedeo_src = models.CharField(max_length=256,null=True)
   name = models.CharField(max_length=32)
   sex = models.IntegerField(choices=(
     (1,"男"),
@@ -22,10 +22,10 @@ class Hr(models.Model):
   ),verbose_name="性别")
   join_datetime = models.DateTimeField(auto_now_add=True)
   text = models.CharField(max_length=256)
-  download_num = models.IntegerField()
-  share_num = models.IntegerField()
-  convert_num = models.IntegerField()
-  gift_value = models.FloatField()
+  download_num = models.IntegerField(null=True)
+  share_num = models.IntegerField(null=True)
+  convert_num = models.IntegerField(null=True)
+  gift_value = models.FloatField(null=True)
 
 
 

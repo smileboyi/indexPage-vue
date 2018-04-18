@@ -2,7 +2,7 @@ import pymysql
 import random
 import datetime
 
-now = datetime.datetime.now()
+now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def createGiftDatas():
   global conn,cur
@@ -75,7 +75,7 @@ def createAccountDatas():
 
 if __name__ == "__main__":
   # 连接数据库
-  conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='', db='webapp', charset='utf8')
+  conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='webapp', charset='utf8')
   cur=conn.cursor()
   # 生成数据
   createHrDatas()

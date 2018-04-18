@@ -18,7 +18,7 @@ from django.conf.urls import include, url
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    url('admin/', admin.site.urls),
-    url(r'^api/', include('indexPage.urls')),
-    url(r'^$', TemplateView.as_view(template_name="index.html")),
+	url('admin/', admin.site.urls),
+	url(r'^api/', include('indexPage.urls')),
+	url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
