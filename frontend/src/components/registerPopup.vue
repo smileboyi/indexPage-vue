@@ -4,10 +4,13 @@
     <label class="register_label dib2 w100">
       <input class="register_ipt wh100" type="text" placeholder="请输入您的手机号" v-model="tel">
     </label>
-    <label class="register_label flex w100">
+    <div class="register_label flex w100">
       <input class="register_ipt wh100 fe" type="text" placeholder="请输入验证码" v-model="code">
-      <i class="db register_validate" style="background-image:url(./static/img/validate.jpg)"></i>
-    </label>
+      <div class="db register_validate" @click="i += 1">
+        <img class="wh100 db" :src="'/captcha?'+i" alt="">
+      </div>
+      <!-- <i class="db register_validate" style="background-image:url(./static/img/validate.jpg)"></i> -->
+    </div>
     <el-button class="register_submit bgc1 db nobd" round @click="fetchRegister">立即注册</el-button>
     <p class="register_already tc">已经注册 <a class="cor2" href="javascript:;">立即登录</a></p>
   </div>
@@ -22,6 +25,7 @@
   export default {
     data(){
       return {
+        i: 0,
         tel: "",
         code: ""
       }

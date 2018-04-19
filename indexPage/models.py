@@ -5,7 +5,7 @@ from django.db import models
 class Account(models.Model):
   nickname = models.CharField(max_length=32,null=True)
   account_tel = models.CharField(max_length=128,primary_key=True)
-  password = models.CharField(max_length=64)
+  password = models.CharField(max_length=256)
   add_time = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):

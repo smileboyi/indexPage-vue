@@ -1,40 +1,63 @@
-# from django.shortcuts import HttpResponse
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.hashers import make_password, check_password
-import json
+from django.views.decorators.csrf import csrf_exempt
+import datetime
+from . import check_code
 from . import models
+import json
+import io
 
 # Create your views here.
 
 
 # 转成哈希值
-def hash_code(s, salt='webapp'):
-  s += salt        # 加点盐
+def hash_code(ps, salt='webapp'):
+  ps += salt        # 加点盐
   return make_password(ps, None, 'pbkdf2_sha256')
 
 
+
+# 验证码
+def create_code_img(request):
+  f = io.BytesIO() #直接在内存开辟一点空间存放临时生成的图片
+  img, code = check_code.create_validate_code() #调用check_code生成照片和验证码
+  request.session['check_code'] = code #将验证码存在服务器的session中，用于校验
+  img.save(f,'PNG') #生成的图片放置于开辟的内存中
+  return HttpResponse(f.getvalue(), 'image/png')  #将内存的数据读取出来，并以HttpResponse返回
+
+
+
 # 用户注册
+@csrf_exempt
 @require_http_methods(["POST"])
 def register(request):
-  # if request.method == "POST":
-  #   tel = request.POST.get('tel')
-  #   code = request.POST.get('code')
-  #   print(tel,code)
+  if request.method == "POST":
+    # 获取用户数据
+    tel = request.POST.get('tel')
+    code = request.POST.get('code')
+    check_code = request.session['check_code']
 
-  #   same_account = models.Account.objects.filter(account_tel=tel)
-  #   if same_account:  # 手机号唯一
-  #     return JsonResponse({error: "手机号已被注册"},safe=False)
+    # 检测验证码
+    if code != check_code:
+      return JsonResponse({'error': "验证码错误"},safe=False)
 
-  #   # 满足条件，创建新用户
-  #   new_account = models.Account.objects.create()
-  #   new_account.account_tel = tel
-  #   new_account.password = hash_code(123456)
-  #   new_account.save()
+    # 手机号是否注册过
+    same_account = models.Account.objects.filter(account_tel=tel)
+    if same_account:
+      return JsonResponse({'error': "手机号已被注册"},safe=False)
 
-  #   return JsonResponse({info: "注册成功，初始密码为123456"},safe=False)
+    # 满足条件，创建新用户
+    dic = {
+      'account_tel': tel,
+      'password': hash_code("123456"),
+      'add_time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    models.Account.objects.create(**dic)
 
-  return JsonResponse({error: "请求失败"},safe=False)
+    return JsonResponse({'info': "注册成功，初始密码为123456"},safe=False)
+
+  return JsonResponse({'error': "注册请求失败"},safe=False)
 
 
 

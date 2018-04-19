@@ -33,6 +33,17 @@ export default {
       });
     });
 
+
+    // 验证码
+    mock.onGet('/captcha').reply(config => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, './static/img/validate.jpg']);
+        }, 200);
+      });
+    });
+
+
     let telUser = {};
     // 注册
     mock.onPost('/register').reply(config => {

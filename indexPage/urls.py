@@ -5,7 +5,8 @@ app_name = 'home'
 urlpatterns = [
   # url(r'login$', views.login),
   # url(r'logout$', views.logout),
+  url(r'captcha$', views.create_code_img),
   url(r'register$', views.register),
-  url(r'gift_list$', views.gift_list),
-  url(r'hr_list$', views.hr_list),
+  url(r'gift/list$', views.gift_list),
+  url(r'hr/list$', views.hr_list),
 ]
