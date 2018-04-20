@@ -60,7 +60,7 @@ def createHrDatas():
 def createAccountDatas():
   global conn,cur,now
   datas=[(
-    "优小招","18888888888","123456",now
+    "优小招","18888888888","$wuFYQznAsLyxZiLi9zdIZ04afLicNVrfFSAb56K2g6s=",now
   ),]
 
   try:  

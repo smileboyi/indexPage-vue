@@ -67,11 +67,16 @@
               message: res.error
             });
           }else{
+            // 可以返回一个用户id或者用户昵称，这里直接用tel显示用户
             this.$message({
               type: "success",
               message: res.info
             });
             this.turnloginState({token:res.token});
+
+            // 持久化登录，或者用cookie。否则页面刷新，重新登录
+            // localStorage.setItem("login_token",res.token);
+            // localStorage.setItem("account_tel",this.tel);
           }
         });
       },
