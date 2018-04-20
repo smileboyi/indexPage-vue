@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 import pymysql  
 import random
 import datetime
@@ -59,8 +60,13 @@ def createHrDatas():
 
 def createAccountDatas():
   global conn,cur,now
+  # error django.core.exceptions.ImproperlyConfigured
+  # https://blog.csdn.net/angel20082008/article/details/26393891
+  import os
+  os.environ['DJANGO_SETTINGS_MODULE'] = 'webApp.settings'
+  ps_hash = make_password('123456', None, 'pbkdf2_sha256')
   datas=[(
-    "优小招","18888888888","$wuFYQznAsLyxZiLi9zdIZ04afLicNVrfFSAb56K2g6s=",now
+    "优小招","18888888888",ps_hash,now
   ),]
 
   try:  

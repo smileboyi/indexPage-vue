@@ -6,7 +6,7 @@ import store from '@/store';
 
 Vue.config.productionTip = false
 
-//开启mock(如果用的是后台数据，不是mock数据，去掉)
+//开启mock(如果用的是后台数据，不是mock数据，注释掉)
 import Mock from '@/mock';
 Mock.start();
 
@@ -41,6 +41,8 @@ import './assets/css/wl.base.css'
 
 //使用axios
 import axios from 'axios'
+// 如果切换后端接口，请修改baseURL
+// axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 
 import App from './App'
 

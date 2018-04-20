@@ -35,7 +35,7 @@ export default {
 
 
     // 验证码
-    mock.onGet('/captcha').reply(config => {
+    mock.onGet('/api/captcha').reply(config => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, './static/img/validate.jpg']);

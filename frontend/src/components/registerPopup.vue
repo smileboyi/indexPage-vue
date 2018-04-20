@@ -7,7 +7,7 @@
     <div class="register_label flex w100">
       <input class="register_ipt wh100 fe" type="text" placeholder="请输入验证码" v-model="code">
       <div class="db register_validate" @click="i += 1">
-        <img class="wh100 db" :src="'/captcha?'+i" alt="">
+        <img class="wh100 db" :src="'/api/captcha?'+i" alt="">
       </div>
       <!-- <i class="db register_validate" style="background-image:url(./static/img/validate.jpg)"></i> -->
     </div>

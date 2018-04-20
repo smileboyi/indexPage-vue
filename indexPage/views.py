@@ -12,9 +12,9 @@ import io
 
 
 # 转成哈希值
-def hash_code(ps, salt='webapp'):
+def hash_code(ps):
   # 如果不加盐，为None时，那么每次生成的哈希都不一样
-  return make_password(ps, salt, 'pbkdf2_sha256')
+  return make_password(ps, None, 'pbkdf2_sha256')
 
 
 # ps处理后比较原哈希值
@@ -85,13 +85,13 @@ def login(request):
   tel = request.POST.get('tel', None)
   password = request.POST.get('password', None)
   message = "登录请求失败"
-
+  
   # 验证用户
   if tel and password:
     try:
       account = models.Account.objects.get(account_tel = tel)
       # 用户密码是否正确
-      if check_hash(password,hash_code(password)):
+      if check_hash(password, account.password):
         # 登录成功设置会话，还可以设置cookie
         message = "欢迎回来"
         request.session['is_login'] = True
