@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { fetchLogin } from '@/api/api';
+  import { fetchLogin, fetchLogout } from '@/api/api';
   import { checkPhone } from '@/assets/js/utils';
   import { telNumberHide } from '@/assets/js/filters';
   import { mapState, mapMutations } from 'vuex'
@@ -81,7 +81,13 @@
         });
       },
       fetchAccountLogout(){
-        this.turnlogoutState();
+        fetchLogout({}).then(res => {
+          this.turnlogoutState();
+          this.$message({
+            type: "info",
+            message: res.info
+          });
+        })
       }
     },
     filters: {

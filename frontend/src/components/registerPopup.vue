@@ -7,9 +7,9 @@
     <div class="register_label flex w100">
       <input class="register_ipt wh100 fe" type="text" placeholder="请输入验证码" v-model="code">
       <div class="db register_validate" @click="i += 1">
-        <img class="wh100 db" :src="'/api/captcha?'+i" alt="">
+        <!-- baseurl不能改，所以npm run dev时访问不到 -->
+        <img class="wh100 db" :src="'/api/captcha?'+i" >
       </div>
-      <!-- <i class="db register_validate" style="background-image:url(./static/img/validate.jpg)"></i> -->
     </div>
     <el-button class="register_submit bgc1 db nobd" round @click="fetchRegister">立即注册</el-button>
     <p class="register_already tc">已经注册 <a class="cor2" href="javascript:;">立即登录</a></p>
@@ -63,8 +63,11 @@
             type: _type,
             message: _message
           });
-          this.tel = "";
-          this.code = "";
+          if(res.info){
+            // 注册成功,清空表单
+            this.tel = "";
+            this.code = "";
+          }
         });
       }
     }

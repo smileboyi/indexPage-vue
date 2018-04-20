@@ -41,8 +41,11 @@ import './assets/css/wl.base.css'
 
 //使用axios
 import axios from 'axios'
-// 如果切换后端接口，请修改baseURL
+axios.defaults.timeout = 5000;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// 如果切换为后端接口，去掉注释
 // axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
+
 
 import App from './App'
 

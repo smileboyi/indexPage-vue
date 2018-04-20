@@ -1,6 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Mock from 'mockjs';
+import qs from 'qs';
+
 
 import { HrDatas, giftDatas } from './data';
 
@@ -47,7 +49,7 @@ export default {
     let telUser = {};
     // 注册
     mock.onPost('/register').reply(config => {
-      let {tel, code} = JSON.parse(config.data);
+      let {tel, code} = qs.parse(config.data);
       if(tel in telUser){
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -71,7 +73,7 @@ export default {
     let token = "";
     // 登录
     mock.onPost('/login').reply(config => {
-      let {tel, password} = JSON.parse(config.data);
+      let {tel, password} = qs.parse(config.data);
       if(tel in telUser){
         if(password != telUser[tel]){
           return new Promise((resolve, reject) => {
