@@ -13,13 +13,24 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.0.0"
+    "axios": "^0.18.0",
+    "element-ui": "^2.3.6",
+    "less": "^3.0.1",
+    "nuxt": "^1.0.0",
+    "qs": "^6.5.1",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.21.0",
+    "stylus-loader": "^3.0.2",
+    "vue-lazyload": "^1.2.3"
   }
 }
