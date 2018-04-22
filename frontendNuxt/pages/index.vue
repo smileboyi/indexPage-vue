@@ -1,24 +1,31 @@
 <template>
-  <section class="container">
-    <!-- <app-logo/> -->
+  <section class="grail">
     <page-top/>
     <feature-box/>
     <resume-box/>
+    <hr-box :hrDatas="hrDatas"/>
+    <gift-box/>
   </section>
 </template>
 
 <script>
-// import AppLogo from '~/components/AppLogo.vue'
-// import hrBox from '~/components/home/hrBox.vue'
+import hrBox from '~/components/home/hrBox.vue'
 import pageTop from '~/components/home/pageTop.vue'
-// import giftBox from '~/components/home/giftBox.vue'
+import giftBox from '~/components/home/giftBox.vue'
 import resumeBox from '~/components/home/resumeBox.vue'
 import featureBox from '~/components/home/featureBox.vue'
+import { getHrDatas } from '~/api/api';
 
 
 export default {
+  async asyncData ({ params }) {
+    let { data } = await getHrDatas({});
+    return { hrDatas:data }
+  },
   components: {
+    hrBox,
     pageTop,
+    giftBox,
     resumeBox,
     featureBox
   }
@@ -26,11 +33,5 @@ export default {
 </script>
 
 <style>
-/* .container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
+
 </style>

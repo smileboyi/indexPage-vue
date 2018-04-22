@@ -1,5 +1,5 @@
 <template>
-  <div class="grail w100">
+  <div>
     <nuxt/>
     <page-bottom/>
   </div>
@@ -20,6 +20,10 @@ export default {
   body{
     max-width: 1900px;
     min-width: 900px;
+  }
+  .__nuxt-error-page{
+    padding: 0;
+    z-index: 100;
   }
 </style>
 

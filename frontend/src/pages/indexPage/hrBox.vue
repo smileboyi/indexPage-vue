@@ -54,7 +54,7 @@
         <div class="hr_show-info pre">
           <a class="hr_show-share dib tc pab" :href="'/hr/'+hrDetails.id+'share'">分享</a>
           <div class="hr_show-right">
-            <p class="hr_show-name">{{hrDetails.name}}（{{hrDetails.sex}}）</p>
+            <p class="hr_show-name">{{hrDetails.name}}（{{hrDetails.sex | numTurnSex}}）</p>
             <p class="hr_show-text">{{hrDetails.text}}</p>
           </div>
         </div>
@@ -82,6 +82,7 @@
   import { mapMutations } from 'vuex'
   import { getHrDatas } from '@/api/api';
   import videoPlayer from '@/components/videoPlayer'
+  import { numTurnSex } from '@/assets/js/filters';
 
 
   export default {
@@ -159,6 +160,9 @@
     },
     components:{
       videoPlayer
+    },
+    filters: {
+      numTurnSex
     }
   }
 </script>

@@ -12,7 +12,7 @@
       <div class="flex hr_list h50">
         <div 
           class="icon hr_item fe" 
-          v-for="(item,index) in hrDatas" 
+          v-for="(item,index) in hrDatas.datas" 
           v-if="index<=5"
           :style="'background-image:url('+ item.pic_url + ')'"
           @mouseover="handleMouseOver(index,item.details)"
@@ -24,7 +24,7 @@
             v-if="item.viedeo_src!=''"
             @click="handleVideoPlay(item.viedeo_src)"
           >
-            <img src="../../assets/img/play-btn.png" />
+            <img src="~/assets/img/play-btn.png" />
           </a>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="flex hr_list h50">
         <div 
           class="icon hr_item fe" 
-          v-for="(item,index) in hrDatas" 
+          v-for="(item,index) in hrDatas.datas" 
           v-if="index>5"
           :style="'background-image:url('+ item.pic_url + ')'"
           @mouseover="handleMouseOver(index,item.details)"
@@ -44,7 +44,7 @@
             v-if="item.viedeo_src!=''"
             @click="handleVideoPlay(item.viedeo_src)"
           >
-            <img src="../../assets/img/play-btn.png" />
+            <img src="~/assets/img/play-btn.png" />
           </a>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <div class="hr_show-info pre">
           <a class="hr_show-share dib tc pab" :href="'/hr/'+hrDetails.id+'share'">分享</a>
           <div class="hr_show-right">
-            <p class="hr_show-name">{{hrDetails.name}}（{{hrDetails.sex}}）</p>
+            <p class="hr_show-name">{{hrDetails.name}}（{{hrDetails.sex | numTurnSex}}）</p>
             <p class="hr_show-text">{{hrDetails.text}}</p>
           </div>
         </div>
@@ -73,22 +73,28 @@
           </div>
         </div>
       </div>
-      <videoPlayer />
+      <video-player />
     </div>
   </div>
 </template>
 
 <script>
+  import videoPlayer from '~/components/common/videoPlayer'
+  import { numTurnSex } from '~/assets/js/filters';
   import { mapMutations } from 'vuex'
-  import { getHrDatas } from '@/api/api';
-  import videoPlayer from '@/components/videoPlayer'
+  import { getHrDatas } from '~/api/api';
 
 
   export default {
+    props: {
+      hrDatas: {
+        type: Object,
+        required: true
+      },
+    },
     data(){
       return {
         isShow: false,
-        hrDatas: [],
         positionObj:{
           left: "0%",
           top: "0%"
@@ -105,20 +111,11 @@
         }
       };
     },
-    created(){
-      // 实例创建后，初始化列表数据，页面还没渲染时调用init方法。
-      this.init();
-    },
     methods:{
       ...mapMutations('home', [
         "conveyVideoSrc",
         "switchVideoState"
       ]),
-      init(){
-        getHrDatas({}).then(res => {
-          this.hrDatas = res.data.datas;
-        });
-      },
       handleMouseOver(index, details){
         if(this.isShow) return;
         if(index<6){
@@ -159,6 +156,9 @@
     },
     components:{
       videoPlayer
+    },
+    filters: {
+      numTurnSex
     }
   }
 </script>

@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   css: [
-    // 放这里有点点样式被覆盖掉，还是在default.vue引入好
+    // 放这里有点点样式会被覆盖掉，还是在default.vue引入好
     // '~/assets/css/wl.base.css'
   ],
   /*
