@@ -1,3 +1,7 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const webpack = require('webpack')
+
+
 module.exports = {
   /*
   ** Headers of the page
@@ -37,6 +41,16 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.plugins.push(new BundleAnalyzerPlugin());
+      config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+      // config.plugins.push(
+      //   new webpack.optimize.CommonsChunkPlugin({
+      //     async: 'vendor2',
+      //     minChunks: (module, count) => (
+      //       count >= 2
+      //     ),
+      //   })
+      // );
     },
     babel: {
       presets: ['stage-2', 'vue-app']
