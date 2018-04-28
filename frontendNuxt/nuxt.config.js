@@ -41,16 +41,10 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-      config.plugins.push(new BundleAnalyzerPlugin());
-      config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-      // config.plugins.push(
-      //   new webpack.optimize.CommonsChunkPlugin({
-      //     async: 'vendor2',
-      //     minChunks: (module, count) => (
-      //       count >= 2
-      //     ),
-      //   })
-      // );
+      if(!isDev){
+        config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+        config.plugins.push(new BundleAnalyzerPlugin());
+      }
     },
     babel: {
       presets: ['stage-2', 'vue-app']

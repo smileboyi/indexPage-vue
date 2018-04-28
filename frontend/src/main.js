@@ -2,12 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from '@/router'
-import store from '@/store';
+import store from '@/store'
 
 Vue.config.productionTip = false
 
 //开启mock(如果用的是后台数据，不是mock数据，注释掉)
-import Mock from '@/mock';
+import Mock from '@/mock'
 Mock.start();
 
 
@@ -26,9 +26,9 @@ Vue.prototype.$message = Message;
 
 
 // 使用VueVideoPlayer
-import VueVideoPlayer from 'vue-video-player'
-import 'video.js/dist/video-js.css'
-Vue.use(VueVideoPlayer)
+// import VueVideoPlayer from 'vue-video-player'
+// import 'video.js/dist/video-js.css'
+// Vue.use(VueVideoPlayer)
 
 // 使用图片懒加载
 import VueLazyload from 'vue-lazyload'

@@ -81,7 +81,6 @@
 <script>
   import { mapMutations } from 'vuex'
   import { getHrDatas } from '@/api/api';
-  import videoPlayer from '@/components/videoPlayer'
   import { numTurnSex } from '@/assets/js/filters';
 
 
@@ -159,7 +158,8 @@
       }
     },
     components:{
-      videoPlayer
+      // videoPlayer: ()=> import('@/components/videoPlayer')
+      videoPlayer:require.ensure([], () => r(require('@/components/videoPlayer')))
     },
     filters: {
       numTurnSex

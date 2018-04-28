@@ -23,7 +23,8 @@
  
 <script>
   import { mapState, mapMutations } from 'vuex'
-
+  import VueVideoPlayer from 'vue-video-player'
+  import 'video.js/dist/video-js.css'
 
   export default {
     data() {
@@ -99,6 +100,9 @@
       playerReadied(player) {
         // console.log('example player 1 readied', player)
       },
+    },
+    components: {
+      VueVideoPlayer
     }
   }
 </script>

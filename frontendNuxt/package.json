@@ -11,9 +11,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "analyz": "nuxt build --report",
-    "analyz2": "nuxt build --prod",
-    "analyz3": "set NODE_ENV=production && nuxt build --analyzer"
+    "analyz": "nuxt build --report"
   },
   "dependencies": {
     "axios": "^0.18.0",
