@@ -1,6 +1,5 @@
-import VueVideoPlayer from 'vue-video-player'
+import videoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
-import Vue from 'vue'
+import Vue from 'vue';
 
-
-Vue.use(VueVideoPlayer)
+Vue.use(videoPlayer)

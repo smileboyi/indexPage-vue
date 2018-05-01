@@ -49,7 +49,7 @@ module.exports = {
     babel: {
       presets: ['stage-2', 'vue-app']
     },
-    vendor: ['axios'],
+    vendor: ['axios','element-ui'],
     loaders: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,

@@ -158,8 +158,8 @@
       }
     },
     components:{
-      // videoPlayer: ()=> import('@/components/videoPlayer')
-      videoPlayer:require.ensure([], () => r(require('@/components/videoPlayer')))
+      // 只有在点击播放的时候才会去加载(打包不会有多大变化)
+      videoPlayer: ()=> import('@/components/videoPlayer')
     },
     filters: {
       numTurnSex

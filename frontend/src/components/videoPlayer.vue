@@ -23,8 +23,8 @@
  
 <script>
   import { mapState, mapMutations } from 'vuex'
-  import VueVideoPlayer from 'vue-video-player'
-  import 'video.js/dist/video-js.css'
+  import { videoPlayer } from 'vue-video-player'
+
 
   export default {
     data() {
@@ -102,7 +102,7 @@
       },
     },
     components: {
-      VueVideoPlayer
+      videoPlayer
     }
   }
 </script>

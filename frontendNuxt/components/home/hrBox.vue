@@ -79,10 +79,10 @@
 </template>
 
 <script>
-  import videoPlayer from '~/components/common/videoPlayer'
   import { numTurnSex } from '~/assets/js/filters';
   import { mapMutations } from 'vuex'
   import { getHrDatas } from '~/api/api';
+  import videoPlayer from '~/components/common/videoPlayer';
 
 
   export default {
@@ -155,6 +155,7 @@
       }
     },
     components:{
+      // videoPlayer: ()=> import('~/components/common/videoPlayer')
       videoPlayer
     },
     filters: {
