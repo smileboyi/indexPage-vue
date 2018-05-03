@@ -43,6 +43,7 @@ def createHrDatas():
   
   for i in range(20):  
     data=(
+      # 这里图片地址为frontend打包后的地址，而不是django static的地址,或者其他地方(应该用这种)，frontendNuxt访问不到
       "/static/img/woman.jpg","http://vjs.zencdn.net/v/oceans.mp4",
       "优小招",1,now,"优小招共享简历模式帮我轻松搞定工作",
       random.randint(10, 1000),random.randint(10, 1000),random.randint(10, 1000),"653.36"
@@ -86,7 +87,7 @@ if __name__ == "__main__":
   # 生成数据
   createHrDatas()
   createGiftDatas()
-  createAccountDatas()
+  createAccountDatas() # 只能运行一次,因为手机号唯一
   # 关闭
   cur.close()
   conn.close()
